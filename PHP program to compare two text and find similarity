@@ -1,0 +1,69 @@
+<form action="<?php $_SERVER['PHP_SELF'];?>" method="post">
+<p>INPUT TEXT1 : <input type="text" required name="text1" id="text1" /></p>
+<p>INPUT TEXT1 : <input type="text" required name="text2" id="text2" /></p>
+<p><input type="submit" id="sumbit" name="submit" value="COMPARE"/></p>
+</form>
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ * 
+ */
+ $a = $b = "";
+ 
+ 
+if(isset($_REQUEST['text1']))
+{
+  $a = strtolower($_REQUEST['text1']);
+} 
+
+if(isset($_REQUEST['text2']))
+{
+	$b = strtolower($_REQUEST['text2']);
+} 
+
+$tokensA = explode(" ",$a);
+$tokensB = explode(" ",$b);
+
+
+//$tokensA = array('what','is','php');
+//$tokensB = array('what','do','you','understand','by','php');
+
+//print_r($tokensB);
+$stopwords = array("a", "about", "above", "above", "across", "after", "afterwards", "again", "against", "all", "almost", "alone", "along", "already", "also","although","always","am","among", "amongst", "amoungst", "amount", "an", "and", "another", "any","anyhow","anyone","anything","anyway", "anywhere", "are", "around", "as", "at", "back","be","became", "because","become","becomes", "becoming", "been", "before", "beforehand", "behind", "being", "below", "beside", "besides", "between", "beyond", "bill", "both", "bottom","but", "by", "call", "can", "cannot", "cant", "co", "con", "could", "couldnt", "cry", "de", "describe", "detail", "do", "done", "down", "due", "during", "each", "eg", "eight", "either", "eleven","else", "elsewhere", "empty", "enough", "etc", "even", "ever", "every", "everyone", "everything", "everywhere", "except", "few", "fifteen", "fify", "fill", "find", "fire", "first", "five", "for", "former", "formerly", "forty", "found", "four", "from", "front", "full", "further", "get", "give", "go", "had", "has", "hasnt", "have", "he", "hence", "her", "here", "hereafter", "hereby", "herein", "hereupon", "hers", "herself", "him", "himself", "his", "how", "however", "hundred", "ie", "if", "in", "inc", "indeed", "interest", "into", "is", "it", "its", "itself", "keep", "last", "latter", "latterly", "least", "less", "ltd", "made", "many", "may", "me", "meanwhile", "might", "mill", "mine", "more", "moreover", "most", "mostly", "move", "much", "must", "my", "myself", "name", "namely", "neither", "never", "nevertheless", "next", "nine", "no", "nobody", "none", "noone", "nor", "not", "nothing", "now", "nowhere", "of", "off", "often", "on", "once", "one", "only", "onto", "or", "other", "others", "otherwise", "our", "ours", "ourselves", "out", "over", "own","part", "per", "perhaps", "please", "put", "rather", "re", "same", "see", "seem", "seemed", "seeming", "seems", "serious", "several", "she", "should", "show", "side", "since", "sincere", "six", "sixty", "so", "some", "somehow", "someone", "something", "sometime", "sometimes", "somewhere", "still", "such", "system", "take", "ten", "than", "that", "the", "their", "them", "themselves", "then", "thence", "there", "thereafter", "thereby", "therefore", "therein", "thereupon", "these", "they", "thickv", "thin", "third", "this", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "top", "toward", "towards", "twelve", "twenty", "two", 
+    "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were",
+     "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the");
+
+$tokensA = array_diff($tokensA, $stopwords);
+$tokensB = array_diff($tokensB,$stopwords);
+
+
+
+
+if(isset($_POST['submit']))
+{	
+$mol = cosineSimilarity($tokensA, $tokensB);
+echo "<br/>"."<h4>The texts you entered are ".round($mol*100). " ". 'Similar</h4>';
+}
+
+function cosineSimilarity($tokensA, $tokensB)
+{
+    $a = $b = $c = 0;
+    $uniqueTokensA = $uniqueTokensB = array();
+
+    $uniqueMergedTokens = array_unique(array_merge($tokensA, $tokensB));
+
+    foreach ($tokensA as $token) $uniqueTokensA[$token] = 0;
+    foreach ($tokensB as $token) $uniqueTokensB[$token] = 0;
+
+    foreach ($uniqueMergedTokens as $token) {
+        $x = isset($uniqueTokensA[$token]) ? 1 : 0;
+        $y = isset($uniqueTokensB[$token]) ? 1 : 0;
+        $a += $x * $y;
+        $b += $x;
+        $c += $y;
+    }
+    return $b * $c != 0 ? $a / sqrt($b * $c) : 0;
+}
+?>
