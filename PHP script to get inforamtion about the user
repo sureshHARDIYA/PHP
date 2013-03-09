@@ -1,0 +1,30 @@
+<?php
+
+echo "<h1>PHP SCRIPT TO FIND INFORMATION ABOUT THE USER</h1>";
+echo "<br/>";
+?>
+YOUR_GATEWAY_INTERFACE = <?php echo $_SERVER['GATEWAY_INTERFACE']; ?> <br>
+YOUR_SERVER_ADDRESS = <?php echo $_SERVER['SERVER_ADDR']; ?> <br>
+YOUR_SERVER_NAME = <?php echo $_SERVER['SERVER_NAME']; ?> <br>
+YOUR_DOCUMENT_ROOT = <?php echo $_SERVER['DOCUMENT_ROOT']; ?> <br>
+YOUR_SERVER_SOFTWARE = <?php echo $_SERVER['SERVER_SOFTWARE']; ?> <br>
+YOUR_SERVER_PROTOCOL = <?php echo $_SERVER['SERVER_PROTOCOL']; ?> <br>
+<hr/>
+REMOTE_ADDR = <?php echo $_SERVER['REMOTE_ADDR']; ?> <br>
+REMOTE_PORT = <?php echo $_SERVER['REMOTE_PORT']; ?> <br>
+SCRIPT_FILENAME = <?php echo $_SERVER['SCRIPT_FILENAME']; ?> <br>
+SERVER_ADMIN = <?php echo $_SERVER['SERVER_ADMIN']; ?> <br>
+SERVER_PORT = <?php echo $_SERVER['SERVER_PORT']; ?> <br>
+SCRIPT_NAME = <?php echo $_SERVER['SCRIPT_NAME']; ?> <br>
+REQUEST_METHOD = <?php echo $_SERVER['REQUEST_METHOD']; ?> <br>
+REQUEST_TIME = <?php echo $_SERVER['REQUEST_TIME']; ?> <br>
+<hr/>
+HTTP_ACCEPT = <?php echo $_SERVER['HTTP_ACCEPT']; ?> <br>
+HTTP_ACCEPT_CHARSET = <?php echo $_SERVER['HTTP_ACCEPT_CHARSET']; ?> <br>
+HTTP_ACCEPT_ENCODING = <?php echo $_SERVER['HTTP_ACCEPT_ENCODING']; ?> <br>
+HTTP_ACCEPT_LANGUAGE = <?php echo $_SERVER['HTTP_ACCEPT_LANGUAGE']; ?> <br>
+HTTP_CONNECTION = <?php echo $_SERVER['HTTP_CONNECTION']; ?> <br>
+HTTP_HOST = <?php echo $_SERVER['HTTP_HOST']; ?> <br>
+HTTP_USER_AGENT = <?php echo $_SERVER['HTTP_USER_AGENT']; ?> <br>
+
+
