@@ -1,0 +1,21 @@
+function forex_scraper()
+{
+
+$data= file_get_contents('http://nrb.org.np/fxmexchangerate1.php');
+$regex='/(<font size="2" face="Verdana">)(.*)(<\/font>)/';
+preg_match_all($regex, $data, $match,PREG_OFFSET_CAPTURE);
+$currencies= array();
+$i=0;
+foreach ($match as $matchvalue) {
+foreach($matchvalue as $output)
+{
+if($i==14) break;
+$value= strip_tags($output[0]);
+$currencies[$i]= $value;
+$i++;
+}
+}
+array_shift($currencies);
+array_shift($currencies);
+return $currencies;
+}
