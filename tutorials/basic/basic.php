@@ -6,4 +6,13 @@ Language Constructs: Language constructs are elements built in the language that
 
 echo 'Hello World !';
 
+
+/*
+ There are 4 types of PHP Tags:
+ 1. Standard tag <?php ..code ?>
+ 2. Short Tags <?=  ..code ?>
+ 3. Script tags <script language="php"> ...code </script>
+ 4. ASP Tags <% ..code %> 
+ */
+
 ?>
